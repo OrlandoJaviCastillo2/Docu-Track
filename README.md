@@ -74,3 +74,23 @@ venv\Scripts\activate  Activación del espacio virtual
 cd C:\Docu-Track\backend    Acceso al backend del prototipo
 
 uvicorn app.main:app --reload     Activación de FastAPI, o backend del prototipo.
+
+
+26/7/2025
+
+Procedí con el desarrollo del backend, lo que incluye las conexiones a las bases de datos, los modelos de los registros, gran parte del middleware para los roles y la validación de los token. También se establecieron las solicitudes para los certificados, y las solicitudes por parte de los administradores. Se estableció también, por el lado del frontend, la estructura básica del sitio web y las rutas a utilizar, además del formulario para hacer login en el sitio web con las cookies.
+
+Ya se puede activar el servidor, y ya se puede acceder al sutio web por medio de localhost3000, aunque de momento no tiene funcionalidad el sitio. Esto debería cambiar conforme adapto los elementos de frontend con los de backend ya existentes. A pesar de algunas dificultades con código molesto (algunas de las ayudas vistas pueden ser refinadas), entre las que se incluyen imports necesarios para el backend, lógicas de código mejorable, y otras dificultades similares. Tocará hacer algunas revisiones de backend, mientras que se van aplicando y ejecutando los nuevos conceptos de frontend.
+
+
+cd C:\Docu-Track\frontend   Folder con los archivos frontend
+
+
+
+npm run dev    activación del servidor     
+
+
+
+http://localhost:3000  link del sitio web
+
+
