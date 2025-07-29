@@ -11,3 +11,66 @@ Para el backend, FastAPI(Python), dado que recientemente estoy haciendo cursos e
 Y para la base de datos, PostgreSQL, ya esta establecido en las instrucciones que se debe utilizar para este proyecto.
 
 Cabe destacar que, a la hora de establecer los fólderes principales del proyecto, hay que tener cuidado con elegir la carpeta correcta, dado que la solución de Fast(API) cuenta con componentes que necesitan ingresarse en la carpeta madre específica.
+
+
+
+25/7/2025
+
+Procedí el día de hoy con el denominado backend del proyecto, o los componentes que conformarían la arquitectura de la aplicación, en conjunto con otras partes y herramientas. Es aquí donde empezaría con los conceptos mas reconocidos por mi persona de la universidad, siendo estos la confección de bases de datos, utilizando el programa PostgreSQL para construir 3 tablas específicas: la tabla para usuarios de la aplicación, la tabla para los administradores, y la tabla para los certificados y sus datos.
+
+La idea es que ambos usuarios y administradores puedan registrarse en el sistema, además de que los usuarios pudieran hacer su registros, mientras que los admins se enfocaran en aprobar los trámites. 
+
+Con la base de datos establecida, entro al backend como tal usando FastAPI. Logré establecer las carpetas principales que formarían la estructura del proyecto, a la vez de que pude establecer también el entorno virtual de venv para el funcionamiento de la aplicación, todo esto con una combinación de Visual Studio para los elementos de Python, y el cmd para el entorno virtual. Con el entorno virtual operativo, se instalarían las dependencias necesarias para el funcionamiento del . Hubo fuertes dificultades con el formateo de algunas dependencias, ya que a la hora de configurar la base de datos, no me reconocía algunos elementos importantes, y me denotaba errores de conexión. Una vez superado este obstáculo, procedí a crear modelos de SQLAlchemy para definir las tablas como clases Python. Finalmente llegue a el arreglo del archivo main para desplegar el FastAPI, sin embargo, algunas de las dependencias no son legibles debido a un problema de codificación UTF-8, el cual según mi investigación, encontró caracteres que no encajan con el formato deseado. 
+
+
+CREATE TABLE usuarios (
+    id SERIAL PRIMARY KEY,
+    email VARCHAR(255) UNIQUE NOT NULL,
+    contraseña TEXT NOT NULL,
+    nombre VARCHAR(255) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+
+
+
+
+CREATE TABLE admins (
+    id SERIAL PRIMARY KEY,
+    email VARCHAR(255) UNIQUE NOT NULL,
+    contraseña TEXT NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+
+
+
+CREATE TABLE certificate_requests (
+    id SERIAL PRIMARY KEY,
+    user_id INTEGER REFERENCES usuarios(id) ON DELETE CASCADE,
+    nombre VARCHAR(100) NOT NULL,
+    apellido VARCHAR(100) NOT NULL,
+    cédula VARCHAR(30) NOT NULL CHECK (cédula ~ '^[0-9\-]+$'),
+    fecha_naci DATE NOT NULL,
+    status VARCHAR(20) NOT NULL DEFAULT 'Recibido' CHECK (
+        status IN ('Recibido', 'En validación', 'Rechazado', 'Emitido')
+    ),
+    file_path TEXT,  -- Ruta a la descarga o impresión en PDF si el estado es 'Emitido'
+    requested_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+
+
+El procedimiento para abrir el espacio virtual y el FastAPI se destacan a continuación, ambos pueden ser abiertos en una sola terminal:
+
+
+cd C:\Docu-Track   Búsqueda del folder con el prototipo de aplicación
+
+
+
+venv\Scripts\activate  Activación del espacio virtual
+
+
+cd C:\Docu-Track\backend    Acceso al backend del prototipo
+
+uvicorn app.main:app --reload     Activación de FastAPI, o backend del prototipo.
