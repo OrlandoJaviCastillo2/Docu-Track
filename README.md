@@ -94,3 +94,9 @@ npm run dev    activación del servidor
 http://localhost:3000  link del sitio web
 
 
+27/7/2025
+
+Hubo una cantidad considerable de dificultades en este día, principalmente en cuanto a el sistema de registro e inicio de sesión, así como con los sistemas de autenticación de el prototipo. Al parecer, gran parte de las dificultades se daba por la presencia de un segundo archivo main.py, el cual se encontraba fuera de el folder app, encontrado a su vez en la sección de backend. Debido a esta dificultad, se tuvieron que modificar varios importes en el archivo main, así como en los factores de autenticación dentro de los archivos routes, e incluso algunos cambios para abarcar otro problema con la tabla de usuarios, la cual al parecer no encontraba debido a la falta de un componente dentro de la misma.  Lo positivo de toda esta experiencia, es que al final, se logró establecer un sistema de registro e inicio de sesión, ya sea para un usuario regular o un administrador, por lo que lo siguiente sería el acceso a las ventanas de menú y operación a las que se quieren acceder.
+
+
+
