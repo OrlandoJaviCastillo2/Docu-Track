@@ -13,19 +13,26 @@ const AuthContext = React.createContext<User | null>(null)
 
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<User | null>(null)
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     const token = Cookies.get('token')
     if (!token) {
+      setLoading(false)
       return
     }
-
-    axios.get('http://127.0.0.1:8000/auth/me', {
-      headers: { Authorization: `Bearer ${token}` },
-    })
+    axios
+      .get('http://localhost:8000/auth/me', {
+        headers: { Authorization: `Bearer ${token}` },
+      })
       .then((res) => setUser(res.data))
       .catch(() => Cookies.remove('token'))
+      .finally(() => setLoading(false))
   }, [])
+
+  if (loading) {
+    return null
+  }
 
   return (
     <AuthContext.Provider value={user}>

@@ -1,18 +1,18 @@
-// src/app/layout.tsx
+import React from 'react'
+import { AuthProvider } from './providers/AuthProvider'
+
 export const metadata = {
   title: 'Docu-Track',
   description: 'Seguimiento de certificados oficiales',
 }
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html>
+    <html lang="es">
       <body>
-        {children}
+        <AuthProvider>
+          {children}
+        </AuthProvider>
       </body>
     </html>
   )

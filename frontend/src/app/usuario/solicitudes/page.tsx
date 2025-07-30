@@ -15,12 +15,12 @@ export default function SolicitudCertificado() {
     try {
       const token = Cookies.get('token')
       const response = await axios.post(
-        'http://localhost:8000/certificados/solicitud',
+        'http://localhost:8000/certificados/crear',
         {
-          nombre,
-          apellido,
-          cedula,
-          fecha_nacimiento: fechaNacimiento,
+          first_name: nombre,
+          last_name: apellido,
+          identity_number: cedula,
+          birth_date: fechaNacimiento,
         },
         {
           headers: {

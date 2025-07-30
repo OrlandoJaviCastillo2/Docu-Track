@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String, Date, ForeignKey, Text, TIMESTAMP, CheckConstraint, DateTime
+from sqlalchemy import Column, Integer, String, Date, ForeignKey, Text, TIMESTAMP, CheckConstraint, DateTime, func
 from sqlalchemy.orm import relationship
 from .database import Base
 from datetime import datetime
@@ -42,7 +42,7 @@ class SolicitudCertificado(Base):
 
     __table_args__ = (
         CheckConstraint("identity_number ~ '^[0-9\\-]+$'", name="identity_number_format"),
-        CheckConstraint("status IN ('Recibido', 'En validación', 'Rechazado', 'Emitido')", name="valid_status"),
+        CheckConstraint("status IN ('pendiente','Recibido', 'En validación', 'Rechazado', 'Emitido')", name="valid_status"),
     )
 
     usuario = relationship("Usuario", back_populates="certificados")
