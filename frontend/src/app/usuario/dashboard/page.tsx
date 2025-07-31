@@ -1,3 +1,4 @@
+//Muestra saludo con `full_name` y botones para solicitar certificado o ver seguimiento.
 'use client'
 
 import { useAuth } from '../../providers/AuthProvider'

@@ -1,3 +1,4 @@
+// El contenedor con menú lateral para secciones de admin
 'use client'
 
 import Link from 'next/link'

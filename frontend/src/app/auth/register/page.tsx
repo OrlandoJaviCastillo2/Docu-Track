@@ -1,3 +1,4 @@
+// Formulario de registro que crea nuevo usuario con rol
 'use client'
 
 import { useState } from 'react'

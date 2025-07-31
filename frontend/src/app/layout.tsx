@@ -1,3 +1,4 @@
+// Envuelve toda la aplicación en HTML estándar y configura el AuthProvider
 import React from 'react'
 import { AuthProvider } from './providers/AuthProvider'
 

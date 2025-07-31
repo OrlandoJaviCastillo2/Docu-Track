@@ -1,3 +1,4 @@
+//Menu lateral con enlaces hacia otras páginas
 'use client'
 
 import Link from 'next/link'

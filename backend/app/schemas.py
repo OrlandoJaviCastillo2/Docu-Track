@@ -1,3 +1,4 @@
+# Modelos Pydantic para validación de datos de entrada/salida
 from pydantic import BaseModel, EmailStr, Field
 from typing import Literal
 from datetime import date

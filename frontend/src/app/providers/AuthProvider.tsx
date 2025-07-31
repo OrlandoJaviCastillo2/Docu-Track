@@ -1,3 +1,4 @@
+//Crear un contexto global con la información del usuario (full_name, role) tras validar el JWT
 'use client'
 
 import React, { ReactNode, useEffect, useState } from 'react'

@@ -1,3 +1,4 @@
+//Bloquea rutas para usuarios no autorizados, redirigir a login o al hub opuesto.
 'use client'
 
 import { useRouter } from 'next/navigation'
@@ -29,7 +30,7 @@ export function ProtectedRoute({ children, role }: { children: ReactNode; role: 
     }
   }, [user, router, role])
 
-  // Nunca renderices hasta que user exista y rol coincida
+ 
   if (!user) return null
   if (role === 'administrador' && !(user.role === 'administrador' || user.role === 'admin')) return null
   if (role === 'usuario' && !(user.role === 'usuario' || user.role === 'user')) return null

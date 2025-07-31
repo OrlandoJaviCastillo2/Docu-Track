@@ -134,3 +134,19 @@ Buenas noticias, después  mucho trabajo y muchos arreglos, logré  arreglar el 
 }
 
 
+30/7/2025
+
+Ya para el último día de desarrollo, he llegado oficialmente a mi fecha límite, y me temo que, a pesar de contar con una estructura compacta, y con un prototipo capaz de guardar usuarios, sus contraseñas, autenticarlas, y el poder registrar certificados con sus datos, no pude lograr ejecutar los componentes de verificación, revisión, e impresión para los mismos. Al final, demasiadas discrepancias entre los diferentes archivos, y mi falta de experiencia con las herramientas empleadas tomaron su cuenta, y se me acabó el tiempo. Sin embargo, puedo decir que, además de aprender mas a fondo sobre los programas como FastAPI y Next.js, los cuales me parecieron muy interesantes e intuitivos, además de refinar mis conocimientos en cuanto a manejo de bases de datos y el análisis de los mismos. Al final, puedo concluir de que esta prueba valió la pena intentar lograrla, a pesar de encontrarme fuera de mi elemento central, y rectifica mi posición de que en el campo de la tecnología, uno siempre tiene que expandir sus horizontes, a pesar de que estos a veces choquen con sus especialidades. Mis sugerencias para cualquiera que trate de ejecutar una operación similar:
+
+-Asegúrense de tener el espacio adecuado en su equipo para el trabajo.
+
+-Planificación detallada de las bases de datos es importante.
+
+-Mientras mas investigues y refines tu sintaxis, mejor.
+
+-Familiarízate con tu lógica, y como esta se refleja en tu proyecto.
+
+-No dudes en buscar ayuda en el Internet, nos pasa a todos, especialmente si estas indagando en software nuevo para ti.
+
+
+Doy las gracias al equipo de EduPan por permitirme esta oportunidad de ponerme a prueba como profesional (aunque fuera de mi especialidad fija) y me mantengo al tanto por cualquier retroalimentación.

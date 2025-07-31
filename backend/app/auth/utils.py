@@ -25,7 +25,7 @@ def get_password_hash(password: str) -> str:
 def verify_password(plain: str, hashed: str) -> bool:
     return pwd_context.verify(plain, hashed)
 
-def create_access_token(data: dict, expires_minutes: int = ACCESS_TOKEN_EXPIRE_MINUTES):
+def create_access_token(data: dict, expires_minutes: int = ACCESS_TOKEN_EXPIRE_MINUTES):               # Crea JWT con payload y expiración
     to_encode = data.copy()
     expire = datetime.utcnow() + timedelta(minutes=expires_minutes)
     to_encode.update({"exp": expire})
@@ -34,20 +34,20 @@ def create_access_token(data: dict, expires_minutes: int = ACCESS_TOKEN_EXPIRE_M
 
 def decode_access_token(token: str) -> Optional[dict]:
     try:
-        payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
+        payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])                     # Decodifica el mencionado JWT y retorna los resultados o nada
         return payload
     except JWTError:
         return None
     
 
-def get_db():
+def get_db():                                                                                 #Busca la base de datos
     db = SessionLocal()
     try:
         yield db
     finally:
         db.close()
 
-def get_current_user(
+def get_current_user(                                                                             #Agarra al usuario actual
     credentials: HTTPAuthorizationCredentials = Depends(oauth2_scheme),
     db: Session = Depends(get_db)
 ):

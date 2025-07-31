@@ -5,7 +5,7 @@ from app import models
 from .utils import decode_access_token
 from app.database import SessionLocal
 
-oauth2_scheme = HTTPBearer()
+oauth2_scheme = HTTPBearer()                                         # Decodifica el JWT(JSON web Tokens), valida roles y obtiene la instancia de user/admin
 
 def get_db():
     db = SessionLocal()

@@ -1,3 +1,4 @@
+// Formulario de autenticación que guarda token y redirige según rol
 'use client'
 
 import { useState } from 'react'

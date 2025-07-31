@@ -1,3 +1,4 @@
+// Dashboard principal para administradores con acceso a gestionar solicitudes
 'use client'
 
 import { useAuth } from '../../providers/AuthProvider'

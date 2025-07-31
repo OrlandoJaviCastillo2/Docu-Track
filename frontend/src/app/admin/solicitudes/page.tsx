@@ -1,3 +1,4 @@
+// Lista todas las solicitudes y permite cambiar su estado
 'use client'
 
 import { useEffect, useState } from 'react'
@@ -6,7 +7,7 @@ import Cookies from 'js-cookie'
 import { useAuth } from '../../providers/AuthProvider'
 import { ProtectedRoute } from '../../providers/ProtectedRoute'
 
-interface Solicitud {
+interface SolicitudAdmin {
   id: number
   first_name: string
   last_name: string
@@ -16,27 +17,31 @@ interface Solicitud {
   identity_number_uuid: string
 }
 
-const statusOptions = ['Recibido', 'En validación', 'Rechazado', 'Emitido']
+const statusOptions = [
+  'pendiente',
+  'Recibido',
+  'En validación',
+  'Rechazado',
+  'Emitido',
+]
 
 export default function SolicitudesAdminPage() {
-  const user = useAuth()
-  const [solicitudes, setSolicitudes] = useState<Solicitud[]>([])
+  const [solicitudes, setSolicitudes] = useState<SolicitudAdmin[]>([])
   const [loading, setLoading] = useState(false)
+  const user = useAuth()
   const [message, setMessage] = useState('')
 
   const fetchSolicitudes = async () => {
     setLoading(true)
     try {
       const token = Cookies.get('token')
-      const response = await axios.get('http://localhost:8000/admin/solicitudes', {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
-      setSolicitudes(response.data)
-    } catch (error) {
-      console.error(error)
-      setMessage('Error al cargar solicitudes')
+      const { data } = await axios.get(
+        'http://localhost:8000/admin/solicitudes',
+        { headers: { Authorization: `Bearer ${token}` } }
+      )
+      setSolicitudes(data)
+    } catch (err) {
+      console.error('Error al cargar solicitudes:', err)
     } finally {
       setLoading(false)
     }
@@ -54,17 +59,17 @@ export default function SolicitudesAdminPage() {
         { status: newStatus },
         { headers: { Authorization: `Bearer ${token}` } }
       )
-      setMessage('Estado actualizado correctamente')
+      setMessage('Estado actualizado')
       fetchSolicitudes()
-    } catch (error) {
-      console.error(error)
+    } catch (err) {
+      console.error('Error al actualizar estado:', err)
       setMessage('Error al actualizar estado')
     }
   }
 
   return (
     <ProtectedRoute role="administrador">
-      <main className="p-8 max-w-4xl mx-auto">
+      <main className="p-6 max-w-4xl mx-auto">
         <h1 className="text-2xl font-bold mb-4">Gestión de Solicitudes</h1>
         {message && <p className="mb-4 text-green-600">{message}</p>}
         <table className="min-w-full table-auto border-collapse">
@@ -73,13 +78,13 @@ export default function SolicitudesAdminPage() {
               <th className="border px-4 py-2">Nombre</th>
               <th className="border px-4 py-2">Apellido</th>
               <th className="border px-4 py-2">Cédula</th>
-              <th className="border px-4 py-2">Fecha de Nacimiento</th>
+              <th className="border px-4 py-2">Fecha Nac.</th>
               <th className="border px-4 py-2">Estado</th>
             </tr>
           </thead>
           <tbody>
             {solicitudes.map((s) => (
-              <tr key={s.id}>
+              <tr key={s.id} className="hover:bg-gray-100">
                 <td className="border px-4 py-2">{s.first_name}</td>
                 <td className="border px-4 py-2">{s.last_name}</td>
                 <td className="border px-4 py-2">{s.identity_number}</td>
@@ -91,9 +96,7 @@ export default function SolicitudesAdminPage() {
                     className="border px-2 py-1 rounded"
                   >
                     {statusOptions.map((opt) => (
-                      <option key={opt} value={opt}>
-                        {opt}
-                      </option>
+                      <option key={opt} value={opt}>{opt}</option>
                     ))}
                   </select>
                 </td>
@@ -105,3 +108,4 @@ export default function SolicitudesAdminPage() {
     </ProtectedRoute>
   )
 }
+

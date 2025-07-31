@@ -1,3 +1,4 @@
+//Solicita la creación de los certificados al sistema
 'use client'
 
 import { useState } from 'react'

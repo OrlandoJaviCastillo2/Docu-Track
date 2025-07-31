@@ -1,3 +1,4 @@
+// La página de bienvenida con enlaces a registro e inicio de sesión
 'use client'
 
 import { useEffect } from 'react'
